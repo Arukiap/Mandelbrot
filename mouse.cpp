@@ -15,7 +15,7 @@ void Mouse::moveMouse(float x, float y){
 }
 
 void Mouse::zoomMouse(){
-    this->zoom += 0.1;
+    this->zoom += 0.1*1/zoomNormalized*0.01;
     this->zoomNormalized = 1.0/this->zoom;
 }
 
@@ -23,7 +23,7 @@ void Mouse::unzoomMouse(){
     if(this->zoom - 0.1 < 1.0){
         return;
     }
-    this->zoom -= 0.1;
+    this->zoom -= 0.1*1/zoomNormalized*0.01;
     this->zoomNormalized = 1.0/this->zoom;
 }
 
