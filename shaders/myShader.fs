@@ -48,6 +48,8 @@ vec2 getCoordinatesFromScreen(vec2 fragCoord, vec2 vSystemResolution, vec4 coord
 }
 
 void main(){	
-	vec2 pixelCoordinates = getCoordinatesFromScreen(gl_FragCoord.xy,vSystemResolution,vec4(-2.0,2.0,-2.0,2.0));
+	vec2 pixelCoordinates = getCoordinatesFromScreen(gl_FragCoord.xy,
+													vSystemResolution,
+													vec4(-2.0,2.0,-2.0,2.0)+vec4(vec2(vMouse.x),vec2(-vMouse.y)));
 	gl_FragColor = vec4(1.0,1.0,1.0,1.0)*iterateMandebrot(pixelCoordinates);
 }

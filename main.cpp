@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
 
     Mesh mesh(vertices,sizeof(vertices)/sizeof(vertices[0]));
 
-    Mouse mouse(0.0,0.0);
+    Mouse mouse(0.0,0.0,0.01);
 
     while(!display.IsClosed()){
         display.Clear(0.0f,0.15f,0.3f,1.0f);

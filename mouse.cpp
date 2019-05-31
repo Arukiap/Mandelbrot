@@ -1,14 +1,15 @@
 #include "mouse.h"
 #include "math.h"
 
-Mouse::Mouse(float x,float y){
+Mouse::Mouse(float x,float y, float sensitivity){
     this->x = x;
     this->y = y;
+    this->sensitivity = sensitivity;
 }
 
 void Mouse::moveMouse(float x, float y){
-    this->x += x;
-    this->y += y;
+    this->x += x*this->sensitivity;
+    this->y += y*this->sensitivity;
 }
 
 float Mouse::GetX(){
