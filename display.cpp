@@ -48,6 +48,17 @@ void Display::Clear(float r, float g, float b, float a){
 
 void Display::ListenInput(Mouse *mouse){
      SDL_Event e;
+
+    const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+
+    if(keystate[SDL_SCANCODE_KP_PLUS]){
+        mouse->zoomMouse();
+    }
+
+    if(keystate[SDL_SCANCODE_KP_MINUS]){
+        mouse->unzoomMouse();
+    }
+
      while(SDL_PollEvent(&e)){
         switch( e.type ){
             case SDL_QUIT:

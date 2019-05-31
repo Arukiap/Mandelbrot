@@ -8,11 +8,11 @@ attribute vec3 pos;
 
 varying float vSystemTime;
 varying vec2 vSystemResolution;
-varying vec2 vMouse;
+varying vec3 vMouse;
 
 uniform float systemTime;
 uniform vec2 systemResolution;
-uniform vec2 mouse;
+uniform vec3 mouse;
 
 void main(){
     gl_Position = vec4(pos,1.0);

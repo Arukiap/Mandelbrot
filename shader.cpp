@@ -49,7 +49,7 @@ void Shader::Bind(unsigned const int timeTicks, unsigned const int displayWidth,
     glUniform1f(timeUniformLocation,timeTicks);
 
     GLint mouseUniformLocation = glGetUniformLocation(program,"mouse");
-    glUniform2f(mouseUniformLocation,mouse.GetX(),mouse.GetY());
+    glUniform3f(mouseUniformLocation,mouse.GetX(),mouse.GetY(),mouse.GetZoomNormalized());
 }
 
 static GLuint CreateShader(const std::string& text, GLenum shaderType){
