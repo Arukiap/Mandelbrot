@@ -4,6 +4,8 @@
  * Fragment Shader - Where the magic happens
  */
 
+precision highp float;
+
 in vec4 gl_FragCoord;
 
 varying float vSystemTime;
@@ -52,5 +54,5 @@ void main(){
 	vec2 pixelCoordinates = getCoordinatesFromScreen(gl_FragCoord.xy,
 													vSystemResolution,
 													vec4(-2.0,2.0,-2.0,2.0)*vMouse.z+vec4(vec2(vMouse.x),vec2(-vMouse.y)));
-	gl_FragColor = vec4(0.6+orbitTrap.x,1.0-orbitTrap.x*50*orbitTrap.y,0.4-orbitTrap.y,1.0)*iterateMandebrot(pixelCoordinates)*0.5;
+	gl_FragColor = vec4(1.0-length(orbitTrap)/5,1.0-orbitTrap.y,1.0-orbitTrap.x,1.0)*(1-iterateMandebrot(pixelCoordinates));
 }
