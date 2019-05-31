@@ -4,11 +4,11 @@
 #include "display.h"
 #include "mesh.h"
 #include "shader.h"
-
+#include "mouse.h"
 
 //System resolution in pixels
-#define WIDTH 500
-#define HEIGHT 500
+#define WIDTH 1280
+#define HEIGHT 1280
 
 #ifdef _WIN32
 #define SEPARATOR "\\"
@@ -30,11 +30,13 @@ int main(int argc, char* argv[]){
 
     Mesh mesh(vertices,sizeof(vertices)/sizeof(vertices[0]));
 
+    Mouse mouse(0.0,0.0);
+
     while(!display.IsClosed()){
         display.Clear(0.0f,0.15f,0.3f,1.0f);
-        shader.Bind(SDL_GetTicks(),WIDTH,HEIGHT); //Binds all the variables you want to share with the GPU.
+        shader.Bind(SDL_GetTicks(),WIDTH,HEIGHT,mouse); //Binds all the variables you want to share with the GPU.
         mesh.Draw();
-        display.ListenInput();
+        display.ListenInput(&mouse);
         display.Update();
     }
 

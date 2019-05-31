@@ -8,6 +8,7 @@ in vec4 gl_FragCoord;
 
 varying float vSystemTime;
 varying vec2 vSystemResolution;
+varying vec2 vMouse;
 
 float maxIterations = 100;
 
@@ -36,5 +37,5 @@ void main(){
 	vec2 teste = gl_FragCoord.xy/vSystemResolution;
 	teste.x = teste.x*4-2;
 	teste.y = teste.y*4-2;
-	gl_FragColor = vec4(iterateMandebrot(teste));
+	gl_FragColor = vec4(1.0,1.0,1.0,1.0)*iterateMandebrot(teste);
 }

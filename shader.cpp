@@ -36,7 +36,7 @@ Shader::~Shader(){
  * If you want to share any value with the shader program, this function is where to do so.
  * This function is called once every frame.
  */
-void Shader::Bind(unsigned const int timeTicks, unsigned const int displayWidth, unsigned const int displayHeight){
+void Shader::Bind(unsigned const int timeTicks, unsigned const int displayWidth, unsigned const int displayHeight, Mouse mouse){
 
     glUseProgram(program);
 
@@ -47,6 +47,9 @@ void Shader::Bind(unsigned const int timeTicks, unsigned const int displayWidth,
     //Pass system time (miliseconds since start of application) to shaders
     GLint timeUniformLocation = glGetUniformLocation(program,"systemTime");
     glUniform1f(timeUniformLocation,timeTicks);
+
+    GLint mouseUniformLocation = glGetUniformLocation(program,"mouse");
+    glUniform2f(mouseUniformLocation,mouse.GetX(),mouse.GetY());
 }
 
 static GLuint CreateShader(const std::string& text, GLenum shaderType){

@@ -7,6 +7,10 @@ Display::Display(int width, int height, const std::string& title){
 
     SDL_Init(SDL_INIT_EVERYTHING);
 
+    //Hide cursor and set it always at middle of screen
+    SDL_ShowCursor(0);
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
     //32 bit color + transparency
     SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
     SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
@@ -42,12 +46,15 @@ void Display::Clear(float r, float g, float b, float a){
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Display::ListenInput(){
+void Display::ListenInput(Mouse *mouse){
      SDL_Event e;
      while(SDL_PollEvent(&e)){
         switch( e.type ){
             case SDL_QUIT:
                 isClosed = true;
+                break;
+            case SDL_MOUSEMOTION:
+                mouse->moveMouse(e.motion.xrel,e.motion.yrel);
                 break;
             default: break;
         }
