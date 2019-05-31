@@ -33,9 +33,21 @@ float iterateMandebrot(vec2 coord){
 	return maxIterations;
 }
 
+//                                  x    y    z     w
+//vec4 coordinateRange represents (Xmin,Xmax,Ymin,Ymax) we want from our screen
+vec2 getCoordinatesFromScreen(vec2 fragCoord, vec2 vSystemResolution, vec4 coordinateRange){
+	vec2 normalizedCoordinates = gl_FragCoord.xy/vSystemResolution; //From 0 to 1 where pixel is in screen
+
+	float horizontalSize = coordinateRange.y-coordinateRange.x; //Size of horizontal part of screen
+	float verticalSize = coordinateRange.w-coordinateRange.z; //Size of vertical part of screen
+	
+	normalizedCoordinates.x = normalizedCoordinates.x*horizontalSize+coordinateRange.x; //Multiply by size and add initial offset position
+	normalizedCoordinates.y = normalizedCoordinates.y*verticalSize+coordinateRange.z;
+
+	return normalizedCoordinates;
+}
+
 void main(){	
-	vec2 teste = gl_FragCoord.xy/vSystemResolution;
-	teste.x = teste.x*4-2;
-	teste.y = teste.y*4-2;
-	gl_FragColor = vec4(1.0,1.0,1.0,1.0)*iterateMandebrot(teste);
+	vec2 pixelCoordinates = getCoordinatesFromScreen(gl_FragCoord.xy,vSystemResolution,vec4(-2.0,2.0,-2.0,2.0));
+	gl_FragColor = vec4(1.0,1.0,1.0,1.0)*iterateMandebrot(pixelCoordinates);
 }
