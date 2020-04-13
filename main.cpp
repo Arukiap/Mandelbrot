@@ -7,8 +7,8 @@
 #include "mouse.h"
 
 //System resolution in pixels
-#define WIDTH 1280
-#define HEIGHT 1280
+#define WIDTH 1000
+#define HEIGHT 1000
 
 #ifdef _WIN32
 #define SEPARATOR "\\"
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
 
     Display display(WIDTH,HEIGHT,"My shader application");
 
-    Shader shader("." SEPARATOR "shaders" SEPARATOR "myShader");
+    Shader shader("." SEPARATOR "shaders" SEPARATOR "mandelbrot");
 
     //Create 2D mesh that occupies the whole screen for fragment shader to draw on
     Vertex vertices[] = { Vertex(glm::vec3(-1.0,1.0,0),glm::vec2(0.0,0.0)),
